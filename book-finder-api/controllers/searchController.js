@@ -1,19 +1,22 @@
-
+const Book = require('../models/book');
+const axios = require('axios');
+const googleBooksAPIUrl = 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyAONS1R3Yu9DdxP4GNUU_VTAu86l7cLqEs&projection=lite&q=';
 
 exports.booksearch_byTextInput = (req, res, next) => {
-    let intput = req.query.searchText;
+    let input = req.query.searchText;
+  
+    axios.get(googleBooksAPIUrl+input)
+      .then((response) => {          
+        res.json(mapitems(response.data.items))                      
+      })
+      .catch((error => {
+        next(new Error(error));
+      }));      
+}
 
-    console.log(intput)
-    let mockBooks = [{
-        title: 'test1',
-        categoty: 'testCategory',
-        intput
-    },
-    {
-        title: 'test2',
-        categoty: 'testCategory',
-        intput  
-    }]
+function mapitems(items){  
     
-    res.json({mockBooks});
+   return items.map(({id, volumeInfo}) =>         
+        new Book(id, volumeInfo.title, volumeInfo.authors, volumeInfo.description,
+              volumeInfo.imageLinks.smallThumbnail, volumeInfo.imageLinks.thumbnail, volumeInfo.previewLink))
 }

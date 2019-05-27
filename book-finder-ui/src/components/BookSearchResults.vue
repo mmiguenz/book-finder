@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
   <BookSearchInput @handleSearch="handleSearch"/>
   <div class="container">
     <div class="wrapper">     
@@ -26,26 +26,14 @@ export default {
     }),
   methods: {  
     handleSearch(searchInput) {
-    console.log('search triggered')
-    console.log(searchInput)
-    this.bookInfoResults = [
-        {
-        id: 1,
-        title: 'mockbook 1',
-        category: 'mockCategory 1'
-        },
-        {
-        id: 2,
-        title: 'mockbook 2',
-        category: 'mockCategory 2'
-        },
-        {
-        id: 3,
-        title: 'mockbook 3',
-        category: 'mockCategory 3'
-        }          
-        ]
-    }
+      fetch('http://localhost:5000/api/booksearch/?searchText='+searchInput)
+        .then((response) => response.json())
+        .then(data => {
+          console.log(data);
+          this.bookInfoResults = data
+        })
+        .catch(error => console.log(error));   
+      }
   },
   mounted() {}
 }
