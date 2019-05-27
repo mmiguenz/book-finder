@@ -7,7 +7,7 @@
     </div>
   </div>
   <div v-if= "!isLoading && bookInfoResults.length == 0" class="jumbotron">
-    <h1 class="display-4">no results found :(</h1>  
+    <h3 class="display-5">no results found :(</h3>  
   </div>
   <div class="container">
     <div class="wrapper">     
@@ -42,7 +42,7 @@ export default {
   methods: {  
     handleSearch(searchInput) {      
       this.isLoading = true;      
-      fetch('http://localhost:5000/api/booksearch/?searchText='+searchInput)
+      fetch('https://book-finder-chingu-preproject.herokuapp.com/api/booksearch/?searchText='+searchInput)
         .then((response) => response.json())
         .then(data => {
           this.bookInfoResults = (data.stack)?[]:data
