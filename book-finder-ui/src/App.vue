@@ -1,20 +1,18 @@
 <template>
-  <div id="app">   
-    <BookSearch msg="Welcome to Your Vue.js App"/>
-    <BookInfoCard/>
+  <div id="app">      
+    <BookSearchResults/>    
   </div>
 </template>
 
 <script>
-import BookSearch from './components/BookSearch'
-import BookInfoCard from './components/BookInfoCard'
+import BookSearchResults from './components/BookSearchResults'
 
 export default {
   name: 'app',
   components: {
-    BookSearch,
-    BookInfoCard
-  }
+    BookSearchResults,
+  },
+  mounted: () => (console.log('app is mounted'))
 }
 </script>
 

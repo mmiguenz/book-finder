@@ -21,18 +21,19 @@
 
 <script>
 export default {
-    name: 'BookSearch',
+    name: 'BookSearchInput',
     props:  {
-        msg: String
+       
     },
     data: () => ({
       searchText: ''
     }),
     methods: {
       search() {
-        console.log(this.searchText)
-    }
-  }
+        this.$emit('handleSearch', this.searchText)
+    },    
+  },
+  mounted(){}
 
 }
 </script>
