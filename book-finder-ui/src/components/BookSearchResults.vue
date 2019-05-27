@@ -11,9 +11,15 @@
   </div>
   <div class="container">
     <div class="wrapper">     
-      <div class="row">            
-        <BookInfoCard v-for="bookInfo in bookInfoResults" :key="bookInfo.id" v-bind:info="bookInfo"/>       
-      </div>  
+       <div class="row">
+          <b-card-group columns>
+            <BookInfoCard
+              v-for="bookInfo in bookInfoResults"
+              :key="bookInfo.id"
+              v-bind:info="bookInfo"
+            />
+          </b-card-group>
+        </div>
     </div>  
   </div>
 </div>
@@ -38,9 +44,8 @@ export default {
       this.isLoading = true;      
       fetch('http://localhost:5000/api/booksearch/?searchText='+searchInput)
         .then((response) => response.json())
-        .then(data => { 
-          console.log(data)         
-          this.bookInfoResults = data
+        .then(data => {
+          this.bookInfoResults = (data.stack)?[]:data
           this.isLoading = false
         })
         .catch(error => console.log(error));   

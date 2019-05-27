@@ -1,16 +1,18 @@
 <template>
-  <div class="col-xs-4 cards">
-    <img v-bind:src= "info.smallThumbnailLink" class="img-responsive" alt="Random images placeholder"> 
-    <div>      
-      <h4>{{ info.title }}</h4> 
-      <p>Author: {{ info.authors}}</p> 
-      <p>Publish: {{ info.publisher }}</p> 
-      <a class="btn btn-primary" v-bind:href="info.previewLink" role="button">More</a>    
-    </div>         
-  </div>   
+<b-card>
+  <b-card-title slot="header">{{info.title}}</b-card-title>
+  <b-card-img v-bind:src="info.smallThumbnailLink" width="20px"></b-card-img>
+  <hr>
+  <b-card-text>
+    <p>Author: {{ info.authors || '-' }}</p>
+    <p>Publish: {{ info.publisher || '-' }}</p>
+  </b-card-text>
+  <b-button v-bind:href="info.previewLink" variant="primary">Preview</b-button>
+</b-card>
 </template>
 
 <script>
+
 export default {
   name: 'BookInfoCard',
   props: ['info'],
@@ -21,6 +23,11 @@ export default {
 </script>
 
 <style>
-
+.card-img {
+  max-width: 50%;
+}
+.card-header h4{
+  margin: 0px;
+}
 </style>
 
