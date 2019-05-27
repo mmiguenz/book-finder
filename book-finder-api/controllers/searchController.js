@@ -6,17 +6,15 @@ exports.booksearch_byTextInput = (req, res, next) => {
     let input = req.query.searchText;
   
     axios.get(googleBooksAPIUrl+input)
-      .then((response) => {          
+      .then((response) => {           
         res.json(mapitems(response.data.items))                      
       })
       .catch((error => {
+        console.log(error)
         next(new Error(error));
       }));      
 }
 
-function mapitems(items){  
-    
-   return items.map(({id, volumeInfo}) =>         
-        new Book(id, volumeInfo.title, volumeInfo.authors, volumeInfo.description,
-              volumeInfo.imageLinks.smallThumbnail, volumeInfo.imageLinks.thumbnail, volumeInfo.previewLink))
+function mapitems(items){   
+ return (items)? items.map(({id, volumeInfo}) => new Book(id, volumeInfo)):[]; 
 }
