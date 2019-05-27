@@ -5,7 +5,7 @@
   <hr>
   <b-card-text>
     <p>Author: {{ info.authors || '-' }}</p>
-    <p>Publish: {{ info.publisher || '-' }}</p>
+    <p>Published by: {{ info.publisher || '-' }}</p>
   </b-card-text>
   <b-button v-bind:href="info.previewLink" variant="primary">Preview</b-button>
 </b-card>

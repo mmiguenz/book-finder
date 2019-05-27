@@ -6,7 +6,7 @@
           <div class="container center">
             <div class="row justify-content-md-center">              
               <div class="col-xs-10">
-                <input v-model="searchText" size="30" type="text" required="required" class="form-control" id="inputsearch" placeholder="Enter your search">     
+                <input v-model="searchText" type="text" required="required" class="form-control" id="inputsearch" placeholder="Enter your search">     
               </div>
               <div class="col-xs-2">
                 <button type="submit" class="btn btn-primary">search</button>
